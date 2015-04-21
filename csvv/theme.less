@@ -1,0 +1,84 @@
+
+/* ~~ Overall ~~ */
+
+/* Step transition */
+
+.csvv-animation-out {
+    opacity: 0;
+    -webkit-transition: opacity 200ms linear;
+    transition: opacity 200ms linear;
+}
+
+.csvv-animation-in {
+    opacity: 1;
+    -webkit-transition: opacity 200ms linear;
+    transition: opacity 200ms linear;
+}
+
+/* Spacing */
+
+.csvv-filename,
+.csvv-checkbox,
+.csvv-btn,
+.csvv-notify {
+    margin-top: 20px;
+}
+
+/* Confirm */
+
+.csvv-confirm-background {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0,0,0,.7);
+}
+
+.csvv-confirm-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 500px;
+    padding: 20px;
+    background-color: #fff;
+}
+
+.csvv-confirm-controls {
+    text-align: right;
+}
+
+/* ~~ Step 1 ~~ */
+
+.csvv-file-upload {
+    /* Done this way so that it is still focusable using the keyboard */
+    position: absolute;
+    clip: rect(0,0,0,0);
+    pointer-events: none;
+}
+
+.csvv-drop {
+    position: relative;
+    height: 200px;
+    cursor: pointer;
+
+    p {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        margin: 0;
+        text-align: center;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+    }
+}
+
+/* ~~ Step 2 ~~ */
+
+/* ~~ Step 3 ~~ */
+
+/* ~~ Step 4 ~~ */
+
