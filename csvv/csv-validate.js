@@ -6,15 +6,10 @@
 /*
 
 ~~ To do ~~
-- Step indicator
-- Add styles
-- Check input enter works
-
 - Add date picker (maybe not neccessary)
 - Add date range support
 - Language options
 - Add range/decimal number support
-
 
 
 ~~ Structure ~~
@@ -386,6 +381,34 @@ var csvValidation = function(target, options, callback, debug) {
 
         return result;
     }
+
+    // Step indicator
+    function stepIndicator(step) {
+        var html = '',
+            stepString = '';
+
+        if (step === 1) {
+            stepString = 'one';
+        } else if (step === 2) {
+            stepString = 'two';
+        } else if (step === 3) {
+            stepString = 'three';
+        } else if (step === 4) {
+            stepString = 'four';
+        }
+
+        $target.removeClass('csvv-step-one csvv-step-two csvv-step-three csvv-step-four').addClass('csvv-step-' + stepString);
+
+        html += '<div class="csvv-step-indicator">';
+            html += '<div class="csvv-step-range"></div>';
+            html += '<span class="csvv-step-title">Upload CSV</span>';
+            html += '<span class="csvv-step-title">Match Columns</span>';
+            html += '<span class="csvv-step-title">Resolve Errors</span>';
+            html += '<span class="csvv-step-title">Finished</span>';
+        html += '</div>';
+
+        return html;
+    }
     
     // ~~ Step 1 : Upload CSV
     var data,
@@ -406,6 +429,8 @@ var csvValidation = function(target, options, callback, debug) {
         var html = '';
 
         html += '<h1 class="csvv-title ' + options.classes.title + '">Step 1</h1>';
+
+        html += stepIndicator(1);
 
         html += '<div id="csvvDragAndDrop">';
             html += '<input class="csvv-file-upload" id="csvvFileUpload" type="file" accept="text/csv,text/plain">';
@@ -618,6 +643,8 @@ var csvValidation = function(target, options, callback, debug) {
         }
         
         html += '<h1 class="csvv-title ' + options.classes.title + '">Step 2</h1>';
+
+        html += stepIndicator(2);
 
         html += '<div id="csvvHeaderBlockList" class="csvv-header-block-list">';
         
@@ -1033,6 +1060,8 @@ var csvValidation = function(target, options, callback, debug) {
         
         var html = '';
         html += '<h1 class="csvv-title ' + options.classes.title + '">Step 3</h1>';
+
+        html += stepIndicator(3);
         
         html += '<div id="csvvValidation"></div>';
         
@@ -1146,6 +1175,8 @@ var csvValidation = function(target, options, callback, debug) {
 
         var html = '';
         html += '<h1 class="csvv-title ' + options.classes.title + '">All finished, thanks!</h1>';
+
+        html += stepIndicator(4);
         
         $target.html(html);
     }
