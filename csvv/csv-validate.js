@@ -963,13 +963,18 @@ var csvValidation = function(target, options, callback, debug) {
                 }
             } else {
                 // Finish
-                transition($target, function() {
-                    $target.removeClass('csvv-animation-in').addClass('csvv-animation-out');
-                }, function() {
+                if ($target.hasClass('csvv-animation-in')) {  
+                    transition($target, function() {
+                        $target.removeClass('csvv-animation-in').addClass('csvv-animation-out');
+                    }, function() {
+                        finish(completedData);
+                    }, function() {
+                        $target.removeClass('csvv-animation-out').addClass('csvv-animation-in');
+                    });
+                } else { 
                     finish(completedData);
-                }, function() {
                     $target.removeClass('csvv-animation-out').addClass('csvv-animation-in');
-                });
+                }
             }
         }
 
