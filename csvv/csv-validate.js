@@ -1,4 +1,8 @@
 
+// CSV Validate (CSVV)
+// Created by Josh Hunt
+// Add link to Github repo
+
 /*
 
 ~~ To do ~~
@@ -159,6 +163,8 @@ var csvValidation = function(target, options, callback, debug) {
 
     function transition($object, callbackStart, callback, callbackEnd) {
         if (browserSupportTransitionEnd && $object.length > 0) {
+            // Remove any animations and redraw (animations can stop transitions from being completed)
+            $object.css('animation', 'none').css('animation');
 
             // Before transition
             if (callbackStart) {
@@ -373,7 +379,7 @@ var csvValidation = function(target, options, callback, debug) {
         }
         
         // Check value length
-        if (value.length < minLength) {
+        if (value.length < minLength && (required === true || value !== '')) {
             result.valid = false;
             result.failed.push('minLength');
         }

@@ -1,7 +1,6 @@
 // Colours
 @blue: #2f84d8;
 @red: #d82f2f;
-@green: #3abb3d;
 
 // Responsive
 @large: ~"(min-width: 768px)";
@@ -100,6 +99,35 @@ label {
         content: " ";
         display: table;
     }
+}
+
+.demo-description {
+    margin-bottom: 20px;
+}
+
+.demo-table {
+    width: 100%;
+    td {
+        width: 1%;
+        padding: 5px;
+        border-right: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+    }
+
+    tr:first-child td {
+        border-top: 1px solid #ccc;
+    }
+
+    td:first-child {
+        border-left: 1px solid #ccc;
+    }
+}
+
+.add-demo-csv.add-demo-csv {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 2px 0 0 2px;
 }
 
 .csvv-transition-out {
@@ -268,14 +296,14 @@ label {
 
 @keyframes checkmark-expand {
     0% {
-        top: 9px;
-        left: 6px;
-        width: 0px;
-        height: 0px;
+        top: 12px;
+        left: 8px;
+        width: 2px;
+        height: 2px;
     }
     100% {
-        top: -1px;
-        left: 4px;
+        top: 2px;
+        left: 5px;
         width: 7px;
         height: 12px;
     }
@@ -296,6 +324,7 @@ label {
 
     input + span {
         padding-left: 22px;
+        position: relative;
     }
 
     input + span:before {

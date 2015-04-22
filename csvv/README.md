@@ -1,8 +1,14 @@
-# Webshop
+# CSVV
 
 ##### v1.0.0
 
 Description to go here
+
+### Dependencies
+
+[jQuery](https://jquery.com/)
+
+[Papaparse](http://papaparse.com/)
 
 ### Initialize
 
@@ -60,13 +66,12 @@ csvValidation(target, options, callback, debugMode);
 
 ###### Example
 
-```
+```js
 var options = {
     columns: [
         {
             name: 'Name',
-            required: true,
-            type: 'date'
+            required: true
         },
         {
             name: 'Email',
@@ -75,9 +80,9 @@ var options = {
             keywords: 'email address'
         },
         {
-            name: 'ID'
+            name: 'ID',
             type: 'number',
-            minLength: 4,
+            minLength: 2,
             keywords: 'id number'
         }
     ],
@@ -95,7 +100,7 @@ var options = {
 
 The first argument of the callback will be an object than contains the final data as an object, an array, and a csv.
 
-```
+```js
 function callback(data) {
     console.log(data.object);
     console.log(data.array);

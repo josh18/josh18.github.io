@@ -1,0 +1,143 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>CSV Validation - Demo</title>
+
+        <!-- CSS - Default styles -->
+        <link rel="stylesheet" href="css/default.css">
+
+        <!-- CSS - Demo styles -->
+        <link rel="stylesheet" href="demo-files/normalize.css">
+        <link href="http://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600,400" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="demo-files/demo.css">
+    
+        <!-- !! Less !!
+        <link rel="stylesheet/less" href="css/default.less">
+        <link rel="stylesheet/less" href="demo-files/demo.less">
+        <script>less = { env: 'development', logLevel: 1 };</script>
+        <script src="demo-files/less.min.js"></script>
+        <script>less.watch();</script>
+        -->
+
+    </head>
+
+    <body>
+    
+    <!-- Container -->
+    <div class="demo">
+        <div class="demo-description">
+            <h1>Intro</h1>
+            <p>This CSV import demo requires users to upload a CSV file that contains three columns: Name, Email, and ID. The result will be outputted to the dev console.</p>
+            <strong>Requirements</strong>
+            <ul>
+                <li>The Name and Email columns have to be filled out.</li>
+                <li>The Email column has to contain email addresses.</li>
+                <li>The ID column has to contain numbers at least two characters long (however it can be left blank).</li> 
+            </ul>
+            <p>If you don't wish to upload a CSV you can use the demo CSV. It looks like this:</p>
+            <table class="demo-table">
+                <tr>
+                    <td>name</td>
+                    <td>email address</td>
+                    <td>id</td>
+                </tr>
+                <tr>
+                    <td>Michael Jordan</td>
+                    <td>jordan@nba.com</td>
+                    <td>23</td>
+                </tr>
+                <tr>
+                    <td>Jon Jones</td>
+                    <td>jones@ufc.com</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Muhammad Ali</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Wayne Gretzky</td>
+                    <td></td>
+                    <td>99</td>
+                </tr>
+                <tr>
+                    <td>Babe Ruth</td>
+                    <td></td>
+                    <td>3</td>
+                </tr>
+            </table>
+        </div>
+        <div id="csvValidationTarget"></div>
+    </div>
+    
+    <!-- JS - Dependencies -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="dependencies/papaparse.min.js"></script>
+
+    <!-- JS - CSV Validate -->
+    <script src="csv-validate.js"></script>
+    
+    <!-- JS - Initialize -->
+    <script>
+
+        // CSVV
+
+        var options = {
+            columns: [
+                {
+                    name: 'Name',
+                    required: true
+                },
+                {
+                    name: 'Email',
+                    required: true,
+                    type: 'email',
+                    keywords: 'email address'
+                },
+                {
+                    name: 'ID',
+                    type: 'number',
+                    minLength: 2,
+                    keywords: 'id number'
+                }
+            ],
+            classes: {
+                btn: 'btn btn-default',
+                notify: 'alert',
+                confirm: 'confirm',
+                input: 'form-control'
+            },
+            dateFormat: 'dd/mm/yyyy'
+        };
+
+        function callback(data) {
+            console.log(data);
+        }
+        
+        csvValidation('#csvValidationTarget', options, callback, true);
+        
+
+        // Demo
+
+        $('#csvValidationTarget').on('click', '#demoCSV', function(e) {
+            var file = new File(['name,email address,id\nMichael Jordan,jordan@nba.com,23\nJon Jones,jones@ufc.com\nMuhammad Ali,,\nWayne Gretzky,,99\nBabe Ruth,,3'], 'demo.csv', {type: "text/csv"});
+
+            var fileEvent = jQuery.Event('drop', {
+                dataTransfer: {
+                    files: [
+                        file
+                    ]
+                }
+            });
+            $('#csvvDrop').trigger(fileEvent);
+        });
+
+        $('#csvvDragAndDrop').css('position', 'relative').append('<button class="add-demo-csv csvv-btn" id="demoCSV" type="button">Add demo CSV</button>');
+
+    </script>
+    
+    </body>
+</html>
