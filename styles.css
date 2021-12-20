@@ -1,0 +1,255 @@
+:root {
+    --light: hsl(0 0% 97%);
+    --dark: hsl(0, 0%, 0%, 0.9);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    color: var(--dark);
+    background-image: radial-gradient(hsl(0deg 8% 96%), hsl(0deg 8% 90%));
+    background-attachment: fixed;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 16px;
+}
+
+h1, h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 400;
+    margin: 0;
+    line-height: 1;
+}
+
+h1 {
+    font-size: 4em;
+}
+
+h2 {
+    position: relative;
+    display: inline-block;
+    min-width: 250px;
+    padding: 8px 16px 4px 32px;
+    margin-top: 32px;
+    margin-left: -32px;
+    font-size: 2em;
+    color: var(--light);
+    background-color: var(--dark);
+}
+
+h2:first-child {
+    margin-top: 0;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 100%;
+    border-top: 22px solid transparent;
+    border-bottom: 22px solid transparent;
+    border-left: 22px solid var(--dark);
+}
+
+h3 {
+    margin-top: 16px;
+    margin-bottom: 0;
+    font-size: 1.5em;
+    font-weight: 400;
+    color: hsl(0, 0%, 0%, 0.6);
+}
+
+a {
+    color: hsl(210deg 100% 60%);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+p, ul {
+    margin-top: 16px;
+    margin-bottom: 0;
+}
+
+li + li {
+    margin-top: 4px;
+}
+
+.page {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    margin: 32px;
+    background-color:var(--light);
+    max-width: 1000px;
+    box-shadow: 0 1px 2px 0 hsl(0, 0%, 0%, 0.1), 0 2px 10px 0 hsl(0, 0%, 0%, 0.1);
+    border-radius: 2px;
+}
+
+header, main {
+    display: flex;
+}
+
+.content {
+    padding-top: 32px;
+    padding-right: 32px;
+    padding-left: 32px;
+}
+
+.content:nth-last-child(2) {
+    padding-bottom: 32px;
+}
+
+.intro {
+    margin-top: 16px;
+}
+
+.experience {
+    margin-top: 4px;
+}
+
+.name {
+    font-weight: 600;
+}
+
+.secondary {
+    color: var(--light);
+    background-color: hsl(210deg, 50%, 30%);
+}
+
+.secondary h2 {
+    background-color: var(--light);
+    color: hsl(210deg, 50%, 30%);
+    min-width: calc(66% + 32px);
+}
+
+.secondary h2::after {
+    border-left-color: var(--light);
+}
+
+.contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 16px;
+}
+
+.contact div {
+    display: flex;
+    align-items: center;
+}
+
+.contact a {
+    color: inherit;
+}
+
+.contact svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+    margin-right: 8px;
+}
+
+.skills {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+    margin-top: 16px;
+}
+
+.skills div {
+    display: flex;
+    align-items: center;
+}
+
+.dot {
+    width: 6px;
+    height: 6px;
+    margin-top: 1px;
+    margin-right: 4px;
+    background-color: currentColor;
+    border-radius: 50%;
+}
+
+.dot:last-of-type {
+    margin-right: 8px;
+}
+
+.no {
+    opacity: 0.25;
+}
+
+@media screen and (max-width: 750px) {
+    .page {
+        margin: 0;
+        box-shadow: none;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .page {
+        grid-template-columns: 1fr;
+    }
+
+    .contact {
+        order: 4;
+        position: relative;
+        padding-top: 64px;
+        padding-bottom: 32px;
+    }
+
+    .contact::before {
+        position: absolute;
+        content: '';
+        height: 1px;
+        top: 32px;
+        right: 32px;
+        left: 32px;
+        border-top: 1px solid rgb(255 255 255 / 10%);
+    }
+}
+
+@media print {
+    :root {
+        --light: #fff;
+    }
+
+    body {
+        background-image: none;
+    }
+
+    .page {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background-color: transparent;
+        box-shadow: none;
+    }
+
+    .content:nth-last-child(2) {
+        padding-bottom: 8px;
+    }
+
+    .contact {
+        position: relative;
+    }
+
+    .contact::after {
+        position: absolute;
+        content: '';
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: -1;
+        height: 100vh;
+        background-color: hsl(210deg, 50%, 30%);
+    }
+}
